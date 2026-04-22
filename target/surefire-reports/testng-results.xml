@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="21" passed="21" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-04-22T19:12:58 IST" name="QA Automation Suite" finished-at="2026-04-22T19:19:22 IST" duration-ms="383539">
+    <groups>
+    </groups>
+    <test started-at="2026-04-22T19:12:58 IST" name="Search Verification" finished-at="2026-04-22T19:14:13 IST" duration-ms="74655">
+      <class name="com.example.qa.testcases.TestCase1SearchVerification">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:12:58 IST" name="setup" finished-at="2026-04-22T19:13:03 IST" duration-ms="4463" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="openAmazonHomepage()[pri:1, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:03 IST" name="openAmazonHomepage" finished-at="2026-04-22T19:13:05 IST" duration-ms="2313" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openAmazonHomepage -->
+        <test-method signature="searchForLaptop()[pri:2, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:05 IST" name="searchForLaptop" finished-at="2026-04-22T19:13:21 IST" duration-ms="16341" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchForLaptop -->
+        <test-method signature="varifySearchResults()[pri:3, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:21 IST" name="varifySearchResults" finished-at="2026-04-22T19:13:22 IST" duration-ms="684" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- varifySearchResults -->
+        <test-method signature="verifyResultHasTitlePriceRating()[pri:4, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:22 IST" name="verifyResultHasTitlePriceRating" finished-at="2026-04-22T19:13:22 IST" duration-ms="89" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyResultHasTitlePriceRating -->
+        <test-method signature="verifyFirstProduct()[pri:5, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:22 IST" name="verifyFirstProduct" finished-at="2026-04-22T19:13:40 IST" duration-ms="17851" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFirstProduct -->
+        <test-method signature="verifySecondProduct()[pri:6, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:40 IST" name="verifySecondProduct" finished-at="2026-04-22T19:13:56 IST" duration-ms="16029" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySecondProduct -->
+        <test-method signature="verifyThirdProduct()[pri:7, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:13:56 IST" name="verifyThirdProduct" finished-at="2026-04-22T19:14:11 IST" duration-ms="15518" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyThirdProduct -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.example.qa.testcases.TestCase1SearchVerification@48fa0f47]" started-at="2026-04-22T19:14:11 IST" name="teardown" finished-at="2026-04-22T19:14:13 IST" duration-ms="1271" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.example.qa.testcases.TestCase1SearchVerification -->
+    </test> <!-- Search Verification -->
+    <test started-at="2026-04-22T19:14:13 IST" name="Cart Validation" finished-at="2026-04-22T19:15:56 IST" duration-ms="103011">
+      <class name="com.example.qa.testcases.TestCase2CartValidation">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:14:13 IST" name="setup" finished-at="2026-04-22T19:14:15 IST" duration-ms="1958" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="openAmazonHomepage()[pri:1, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:14:15 IST" name="openAmazonHomepage" finished-at="2026-04-22T19:14:35 IST" duration-ms="20365" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openAmazonHomepage -->
+        <test-method signature="openFirstProduct()[pri:2, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:14:35 IST" name="openFirstProduct" finished-at="2026-04-22T19:14:50 IST" duration-ms="15339" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openFirstProduct -->
+        <test-method signature="verifyProductNameAndPrice()[pri:3, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:14:50 IST" name="verifyProductNameAndPrice" finished-at="2026-04-22T19:15:06 IST" duration-ms="15257" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyProductNameAndPrice -->
+        <test-method signature="addToCart()[pri:4, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:15:06 IST" name="addToCart" finished-at="2026-04-22T19:15:21 IST" duration-ms="15403" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addToCart -->
+        <test-method signature="goToCartAndVerify()[pri:5, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:15:21 IST" name="goToCartAndVerify" finished-at="2026-04-22T19:15:38 IST" duration-ms="17416" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- goToCartAndVerify -->
+        <test-method signature="verifyCartQuantityAndTotal()[pri:6, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:15:38 IST" name="verifyCartQuantityAndTotal" finished-at="2026-04-22T19:15:39 IST" duration-ms="368" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCartQuantityAndTotal -->
+        <test-method signature="removeItemAndVerifyEmptyCart()[pri:7, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:15:39 IST" name="removeItemAndVerifyEmptyCart" finished-at="2026-04-22T19:15:54 IST" duration-ms="15374" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removeItemAndVerifyEmptyCart -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.example.qa.testcases.TestCase2CartValidation@6fe7aac8]" started-at="2026-04-22T19:15:54 IST" name="teardown" finished-at="2026-04-22T19:15:56 IST" duration-ms="1492" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.example.qa.testcases.TestCase2CartValidation -->
+    </test> <!-- Cart Validation -->
+    <test started-at="2026-04-22T19:15:56 IST" name="Form Validation" finished-at="2026-04-22T19:19:22 IST" duration-ms="205826">
+      <class name="com.example.qa.testcases.TestCase3FormValidation">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:15:56 IST" name="setup" finished-at="2026-04-22T19:15:57 IST" duration-ms="1752" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="openAppleSupportPage()[pri:1, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:15:57 IST" name="openAppleSupportPage" finished-at="2026-04-22T19:16:33 IST" duration-ms="35202" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openAppleSupportPage -->
+        <test-method signature="verifyFormFieldsVisible()[pri:2, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:16:33 IST" name="verifyFormFieldsVisible" finished-at="2026-04-22T19:17:03 IST" duration-ms="30313" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFormFieldsVisible -->
+        <test-method signature="verifyRequiredFieldsOnBlankSubmit()[pri:3, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:17:03 IST" name="verifyRequiredFieldsOnBlankSubmit" finished-at="2026-04-22T19:17:33 IST" duration-ms="30206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyRequiredFieldsOnBlankSubmit -->
+        <test-method signature="verifyInvalidEmailFormat()[pri:4, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:17:33 IST" name="verifyInvalidEmailFormat" finished-at="2026-04-22T19:18:03 IST" duration-ms="30229" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyInvalidEmailFormat -->
+        <test-method signature="verifyWeakPasswordError()[pri:5, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:18:03 IST" name="verifyWeakPasswordError" finished-at="2026-04-22T19:18:34 IST" duration-ms="30591" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyWeakPasswordError -->
+        <test-method signature="verifyPasswordMismatchError()[pri:6, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:18:34 IST" name="verifyPasswordMismatchError" finished-at="2026-04-22T19:18:34 IST" duration-ms="75" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPasswordMismatchError -->
+        <test-method signature="verifyValidInputsAccepted()[pri:7, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:18:34 IST" name="verifyValidInputsAccepted" finished-at="2026-04-22T19:19:21 IST" duration-ms="46482" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyValidInputsAccepted -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.example.qa.testcases.TestCase3FormValidation@be64738]" started-at="2026-04-22T19:19:21 IST" name="teardown" finished-at="2026-04-22T19:19:22 IST" duration-ms="932" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.example.qa.testcases.TestCase3FormValidation -->
+    </test> <!-- Form Validation -->
+  </suite> <!-- QA Automation Suite -->
+</testng-results>

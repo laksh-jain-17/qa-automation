@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="QA Automation Suite" verbose="1">
+    <!-- For test case 1-->
+    <test name="Search Verification">
+        <classes>
+            <class name="com.example.qa.testcases.TestCase1SearchVerification"/>
+        </classes>
+    </test>
+    <!-- For testcase 2-->
+    <test name="Cart Validation">
+        <classes>
+            <class name="com.example.qa.testcases.TestCase2CartValidation"/>
+        </classes>
+    </test>
+    <!-- For test case 3-->
+    <test name="Form Validation">
+        <classes>
+            <class name="com.example.qa.testcases.TestCase3FormValidation"/>
+        </classes>
+    </test>
+</suite>
