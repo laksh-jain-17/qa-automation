@@ -89,7 +89,7 @@ public class TestCase1SearchVerification extends Components_Amazon
         try
         {
             List<WebElement> titles = driver.findElements(
-                By.cssSelector("h2.a-size-mini span")
+                By.cssSelector("h2.a-size-medium, h2.a-size-base-plus")
             );
             List<WebElement> prices = driver.findElements(
                 By.cssSelector(".a-price .a-offscreen")
@@ -136,7 +136,7 @@ public class TestCase1SearchVerification extends Components_Amazon
         {
             WebElement firstProduct = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                    By.cssSelector("h2 a.a-link-normal.s-line-clamp-2, h2 a.a-link-normal")
+                    By.cssSelector("[data-component-type='s-search-result'] h2 a")
                 )
             );
             String productName = firstProduct.getText();
@@ -190,7 +190,7 @@ public class TestCase1SearchVerification extends Components_Amazon
         {
             List<WebElement> products = wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                    By.cssSelector("h2.a-size-mini a")
+                    By.cssSelector("[data-component-type='s-search-result'] h2 a")
                 )
             );
             String productName = products.get(1).getText();
@@ -235,7 +235,7 @@ public class TestCase1SearchVerification extends Components_Amazon
         {
             List<WebElement> products = wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                    By.cssSelector("h2.a-size-mini a")
+                    By.cssSelector("[data-component-type='s-search-result'] h2 a")
                 )
             );
             String productName = products.get(2).getText();

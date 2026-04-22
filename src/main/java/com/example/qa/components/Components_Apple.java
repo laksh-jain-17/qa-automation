@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,7 +27,13 @@ public class Components_Apple
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         options.setExperimentalOption("useAutomationExtension", false);
+        new File("screenshots/test_case_1").mkdirs();
+        new File("screenshots/test_case_2").mkdirs();
+        new File("screenshots/test_case_3").mkdirs();
         driver = new ChromeDriver(options);
+        ((JavascriptExecutor) driver).executeScript(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        );
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
     public void tearDown()

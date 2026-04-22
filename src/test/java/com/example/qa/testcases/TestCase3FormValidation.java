@@ -61,7 +61,7 @@ public class TestCase3FormValidation extends Components_Apple
                 System.out.println("Fail : No form fields are found");
                 testPassed = false;
             }
-            takeScreenshot("screenshots/test_Case_3/form_fields_visible.png");
+            takeScreenshot("screenshots/test_case_3/form_fields_visible.png");
         }
         catch(Exception e)
         {
@@ -92,7 +92,7 @@ public class TestCase3FormValidation extends Components_Apple
                 System.out.println("Fail : No error messages found");
                 testPassed = false;
             }
-            takeScreenshot("screenshots/test_Case_3/required_fields_error.png");
+            takeScreenshot("screenshots/test_case_3/required_fields_error.png");
         }
         catch(Exception e)
         {
@@ -125,7 +125,7 @@ public class TestCase3FormValidation extends Components_Apple
                 System.out.println("Fail : No error shown for invalid email");
                 testPassed = false;
             }
-            takeScreenshot("screenshots/test_Case_3/invalid_email.png");
+            takeScreenshot("screenshots/test_case_3/invalid_email.png");
         }
         catch(Exception e)
         {
@@ -158,7 +158,7 @@ public class TestCase3FormValidation extends Components_Apple
                 System.out.println("Fail : No error shown for weak password");
                 testPassed = false;
             }
-            takeScreenshot("screenshots/test_Case_3/weak_password_error.png");
+            takeScreenshot("screenshots/test_case_3/weak_password_error.png");
         }
         catch(Exception e)
         {
@@ -249,7 +249,7 @@ public class TestCase3FormValidation extends Components_Apple
                     System.out.println("Pass Filled password field");
                 }
             }
-            takeScreenshot("screenshots/test_Case_3/valid_inputs.png");
+            takeScreenshot("screenshots/test_case_3/valid_inputs.png");
             System.out.println("Pass : Valid inputs entered successfully");
         }
         catch(Exception e)

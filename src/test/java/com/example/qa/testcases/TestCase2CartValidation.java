@@ -51,7 +51,7 @@ public class TestCase2CartValidation extends Components_Amazon
         {
             wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("[data-component-type='s-search-result']")
+                    By.cssSelector("[data-component-type='s-search-result'] h2 a")
                 )
             );
             takeScreenshot("screenshots/test_case_2/search_results.png");
