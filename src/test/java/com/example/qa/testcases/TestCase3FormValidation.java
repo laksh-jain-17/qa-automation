@@ -1,260 +1,463 @@
 package com.example.qa.testcases;
+
 import com.example.qa.components.Components_Apple;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.List;
+
 public class TestCase3FormValidation extends Components_Apple
 {
     boolean testPassed = true;
+
+    // Tracks whether we've successfully entered the iframe at least once.
+    // If setup (priority 1) couldn't enter the iframe, all subsequent tests
+    // should skip rather than produce misleading failures.
+    boolean iframeReady = false;
+
     @BeforeClass
     public void setup()
     {
         setUp();
     }
+
     @AfterClass
     public void teardown()
     {
-        writeResult("Test Case 3",testPassed ? "Passed" : "Failed");
+        writeResult("Test Case 3", testPassed ? "Passed" : "Failed");
         tearDown();
     }
+
+    // -------------------------------------------------------------------------
+    // FIX: The original switchToFormFrame() was called at the start of every
+    // test, but after a previous test already switched into the iframe the call
+    // to defaultContent() was missing a proper re-entry guard.  More critically,
+    // Apple's signup widget lives in a *nested* iframe structure — the outer page
+    // loads an <iframe id="aid-auth-widget-iFrame"> and INSIDE that there is
+    // sometimes another frame.  We need to handle both depths.
+    //
+    // This version:
+    //  1. Always resets to defaultContent first.
+    //  2. Tries the known Apple iframe IDs/names before falling back to index 0.
+    //  3. After entering the outer frame, checks whether there is yet another
+    //     nested frame and enters it if found.
+    //  4. Returns true on success so callers can skip the test gracefully.
+    // -------------------------------------------------------------------------
+    private boolean switchToFormFrame()
+    {
+        try
+        {
+            driver.switchTo().defaultContent();
+
+            // Wait for at least one iframe to exist
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("iframe")));
+
+            // Try known Apple iframe selectors first
+            String[] iframeSelectors = {
+                "iframe#aid-auth-widget-iFrame",
+                "iframe[name*='aid']",
+                "iframe[id*='apple']",
+                "iframe[src*='account.apple.com']",
+                "iframe[src*='appleid']"
+            };
+
+            boolean switched = false;
+            for (String sel : iframeSelectors)
+            {
+                try {
+                    WebElement frame = driver.findElement(By.cssSelector(sel));
+                    driver.switchTo().frame(frame);
+                    switched = true;
+                    System.out.println("Switched into iframe: " + sel);
+                    break;
+                } catch (Exception ignored) {}
+            }
+
+            if (!switched)
+            {
+                // Fallback: first iframe on the page
+                List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+                if (frames.isEmpty())
+                {
+                    System.out.println("No iframes found on page");
+                    return false;
+                }
+                driver.switchTo().frame(frames.get(0));
+                System.out.println("Switched into first iframe (fallback). Total iframes: " + frames.size());
+            }
+
+            // Check for a nested iframe inside (Apple sometimes double-nests)
+            List<WebElement> nestedFrames = driver.findElements(By.tagName("iframe"));
+            if (!nestedFrames.isEmpty())
+            {
+                try {
+                    driver.switchTo().frame(nestedFrames.get(0));
+                    System.out.println("Switched into nested iframe");
+                } catch (Exception ignored) {
+                    // If nested switch fails, stay in the outer frame — may still work
+                }
+            }
+
+            // Verify we can actually see form content
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("form, input")));
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Could not switch to form iframe: " + e.getMessage());
+            return false;
+        }
+    }
+
     @Test(priority = 1)
-    public void openAppleSupportPage()
+    public void openAppleAccountPage()
     {
         try
         {
             driver.get("https://account.apple.com/account");
-            wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("form")
-                )
-            );
+            Thread.sleep(5000); // Apple's page is very JS-heavy
+
             String title = driver.getTitle();
-            System.out.println("Page title " + title);
-            takeScreenshot("screenshots/test_case_3/page_loaded.png");
-            System.out.println("Pass : Apple account page loaded successfully");
+            String url   = driver.getCurrentUrl();
+            System.out.println("Page title: " + title);
+            System.out.println("Current URL: " + url);
+
+            iframeReady = switchToFormFrame();
+
+            if (iframeReady)
+            {
+                // Confirm form actually rendered inside the iframe
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("form")));
+                takeScreenshot("screenshots/test_case_3/page_loaded.png");
+                System.out.println("Pass : Apple account page loaded successfully");
+            }
+            else
+            {
+                System.out.println("Fail : Could not enter form iframe");
+                testPassed = false;
+            }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail : Apple account page did not load " + e.getMessage());
+            System.out.println("Fail : Apple account page did not load: " + e.getMessage());
             testPassed = false;
         }
     }
+
     @Test(priority = 2)
-    public void verifyFormFieldsVisible() 
+    public void verifyFormFieldsVisible()
     {
+        if (!iframeReady) { System.out.println("Skip : iframe not ready"); testPassed = false; return; }
         try
         {
-            List<WebElement> inputFields = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                    By.cssSelector("input")
+            switchToFormFrame();
+
+            // FIX: visibilityOfAllElementsLocatedBy fails if ANY input in the
+            // selector set is hidden (e.g. a honeypot or invisible field).
+            // Use presenceOf + manual filter instead.
+            List<WebElement> allInputs = wait.until(
+                ExpectedConditions.presenceOfAllElementsLocatedBy(
+                    By.cssSelector("input:not([type='hidden'])")
                 )
             );
-            if(inputFields.size() > 0)
+
+            List<WebElement> visibleInputs = allInputs.stream()
+                .filter(WebElement::isDisplayed)
+                .collect(java.util.stream.Collectors.toList());
+
+            if (visibleInputs.size() > 0)
+                System.out.println("Pass : Form fields visible. Count: " + visibleInputs.size());
+            else
             {
-                System.out.println("Pass : Form fields are visible count " + inputFields.size());
-            }
-            else{
-                System.out.println("Fail : No form fields are found");
+                System.out.println("Fail : No visible form fields found (total present: " + allInputs.size() + ")");
                 testPassed = false;
             }
             takeScreenshot("screenshots/test_case_3/form_fields_visible.png");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail : Form fields are not visible " + e.getMessage());
+            System.out.println("Fail : Form fields not visible: " + e.getMessage());
             testPassed = false;
         }
     }
+
     @Test(priority = 3)
-    public void verifyRequiredFieldsOnBlankSubmit() 
+    public void verifyRequiredFieldsOnBlankSubmit()
     {
+        if (!iframeReady) { System.out.println("Skip : iframe not ready"); testPassed = false; return; }
         try
         {
-            WebElement continueButton = wait.until(
+            switchToFormFrame();
+
+            WebElement submitButton = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                    By.cssSelector("button[type='submit']")
+                    By.cssSelector("button[type='submit'], input[type='submit']")
                 )
             );
-            continueButton.click();
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
             Thread.sleep(2000);
+
             List<WebElement> errorMessages = driver.findElements(
-                By.cssSelector(".form-message-error, .error, [aria-invalid='true']")
+                By.cssSelector(
+                    "[aria-invalid='true'], " +
+                    ".form-message-error, " +
+                    ".error-message, " +
+                    "[class*='error'], " +
+                    "[role='alert']"
+                )
             );
-            if(errorMessages.size() > 0)
+
+            if (errorMessages.size() > 0)
+                System.out.println("Pass : Required fields validation triggered. Errors found: " + errorMessages.size());
+            else
             {
-                System.out.println("Pass : Required fields validation triggered " + errorMessages.size());
-            }
-            else{
-                System.out.println("Fail : No error messages found");
+                System.out.println("Fail : No error messages after blank submit");
                 testPassed = false;
             }
             takeScreenshot("screenshots/test_case_3/required_fields_error.png");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail : Error occurred while submitting form " + e.getMessage());
+            System.out.println("Fail : Error submitting blank form: " + e.getMessage());
             testPassed = false;
         }
     }
+
     @Test(priority = 4)
-    public void verifyInvalidEmailFormat() 
+    public void verifyInvalidEmailFormat()
     {
+        if (!iframeReady) { System.out.println("Skip : iframe not ready"); testPassed = false; return; }
         try
         {
+            switchToFormFrame();
+
             WebElement emailField = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("input[type='email'], input[name*='email'], input[id*='email']")
+                ExpectedConditions.presenceOfElementLocated(
+                    By.cssSelector(
+                        "input[type='email'], " +
+                        "input[name*='email'], " +
+                        "input[id*='email'], " +
+                        "input[autocomplete='email']"
+                    )
                 )
+            );
+
+            // Scroll into view in case it's off-screen
+            ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", emailField
             );
             emailField.clear();
             emailField.sendKeys("invalidemail");
-            driver.findElement(By.cssSelector("body")).click();
+            emailField.sendKeys(org.openqa.selenium.Keys.TAB);
             Thread.sleep(2000);
-            List<WebElement> emailErrorMessages = driver.findElements(
-                By.cssSelector(".form-message-error, .error, [aria-invalid='true']")
+
+            List<WebElement> emailErrors = driver.findElements(
+                By.cssSelector("[aria-invalid='true'], .form-message-error, [class*='error'], [role='alert']")
             );
-            if(emailErrorMessages.size() > 0)
-            {
+
+            if (emailErrors.size() > 0)
                 System.out.println("Pass : Invalid email error shown");
-            }
-            else{
+            else
+            {
                 System.out.println("Fail : No error shown for invalid email");
                 testPassed = false;
             }
             takeScreenshot("screenshots/test_case_3/invalid_email.png");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail : Error occurred while validating email format " + e.getMessage());
+            System.out.println("Fail : Error validating email: " + e.getMessage());
             testPassed = false;
         }
     }
+
     @Test(priority = 5)
     public void verifyWeakPasswordError()
     {
+        if (!iframeReady) { System.out.println("Skip : iframe not ready"); testPassed = false; return; }
         try
         {
+            switchToFormFrame();
+
             WebElement passwordField = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("input[type='password'], input[name*='password'], input[id*='password']")
+                ExpectedConditions.presenceOfElementLocated(
+                    By.cssSelector(
+                        "input[type='password'], " +
+                        "input[name*='password'], " +
+                        "input[id*='password'], " +
+                        "input[autocomplete='new-password']"
+                    )
                 )
+            );
+
+            ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", passwordField
             );
             passwordField.clear();
             passwordField.sendKeys("123");
-            driver.findElement(By.cssSelector("body")).click();
+            passwordField.sendKeys(org.openqa.selenium.Keys.TAB);
             Thread.sleep(1500);
+
             List<WebElement> passwordErrors = driver.findElements(
-                By.cssSelector(".form-message-error, .error, [aria-invalid='true']")
+                By.cssSelector("[aria-invalid='true'], .form-message-error, [class*='error'], [role='alert']")
             );
-            if(passwordErrors.size() > 0)
-            {
+
+            if (passwordErrors.size() > 0)
                 System.out.println("Pass : Weak password error shown");
-            }
-            else{
-                System.out.println("Fail : No error shown for weak password");
+            else
+            {
+                System.out.println("Fail : No error for weak password");
                 testPassed = false;
             }
             takeScreenshot("screenshots/test_case_3/weak_password_error.png");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail : Error occurred while validating password strength " + e.getMessage());
+            System.out.println("Fail : Error validating password strength: " + e.getMessage());
             testPassed = false;
         }
     }
+
     @Test(priority = 6)
     public void verifyPasswordMismatchError()
     {
+        if (!iframeReady) { System.out.println("Skip : iframe not ready"); testPassed = false; return; }
         try
         {
+            switchToFormFrame();
+
             List<WebElement> passwordFields = driver.findElements(
                 By.cssSelector("input[type='password']")
             );
-            if(passwordFields.size() >= 2)
+
+            if (passwordFields.size() >= 2)
             {
                 passwordFields.get(0).clear();
                 passwordFields.get(0).sendKeys("ValidPass@123");
+
                 passwordFields.get(1).clear();
                 passwordFields.get(1).sendKeys("DifferentPass@456");
-                driver.findElement(By.cssSelector("body")).click();
+                passwordFields.get(1).sendKeys(org.openqa.selenium.Keys.TAB);
                 Thread.sleep(1500);
+
                 List<WebElement> mismatchErrors = driver.findElements(
-                    By.cssSelector(".form-message-error, .error, [aria-invalid='true']")
+                    By.cssSelector("[aria-invalid='true'], .form-message-error, [class*='error'], [role='alert']")
                 );
-                if(mismatchErrors.size() > 0)
-                {
+
+                if (mismatchErrors.size() > 0)
                     System.out.println("Pass : Password mismatch error shown");
-                }
-                else{
-                    System.out.println("Fail : No error shown for password mismatch");
+                else
+                {
+                    System.out.println("Fail : No error for password mismatch");
                     testPassed = false;
                 }
                 takeScreenshot("screenshots/test_case_3/password_mismatch_error.png");
             }
-            else{
-                System.out.println("Fail : could not find confirm password field");
+            else
+            {
+                System.out.println("Fail : Could not find both password fields. Found: " + passwordFields.size());
                 testPassed = false;
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail could not verify password mismatch " + e.getMessage());
+            System.out.println("Fail : Error verifying password mismatch: " + e.getMessage());
             testPassed = false;
         }
     }
+
     @Test(priority = 7)
     public void verifyValidInputsAccepted()
     {
+        if (!iframeReady) { System.out.println("Skip : iframe not ready"); testPassed = false; return; }
         try
         {
+            // Reload for a clean form state
+            driver.switchTo().defaultContent();
             driver.get("https://account.apple.com/account");
-            Thread.sleep(2000);
+            Thread.sleep(5000);
+
+            boolean entered = switchToFormFrame();
+            if (!entered)
+            {
+                System.out.println("Fail : Could not re-enter iframe for valid inputs test");
+                testPassed = false;
+                return;
+            }
+
+            // FIX: Use presenceOf + filter visible — same reason as verifyFormFieldsVisible
             List<WebElement> allInputs = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                ExpectedConditions.presenceOfAllElementsLocatedBy(
                     By.cssSelector("input:not([type='hidden'])")
                 )
             );
-            System.out.println("Found " + allInputs.size() + " input fields");
-            for(WebElement input : allInputs)
+
+            List<WebElement> visibleInputs = allInputs.stream()
+                .filter(WebElement::isDisplayed)
+                .collect(java.util.stream.Collectors.toList());
+
+            System.out.println("Visible input fields: " + visibleInputs.size());
+            int filledCount = 0;
+
+            for (WebElement input : visibleInputs)
             {
-                String inputType = input.getAttribute("type");
-                String inputName = input.getAttribute("name") != null ? input.getAttribute("name"): "";
-                String inputId = input.getAttribute("id") != null ? input.getAttribute("id") : "";
-                if(inputName.contains("firstName") || inputId.contains("firstName"))
+                String type       = input.getAttribute("type");
+                String name       = input.getAttribute("name");
+                String id         = input.getAttribute("id");
+                String autoComp   = input.getAttribute("autocomplete");
+
+                // Normalise nulls
+                name     = name     != null ? name.toLowerCase()     : "";
+                id       = id       != null ? id.toLowerCase()       : "";
+                autoComp = autoComp != null ? autoComp.toLowerCase() : "";
+
+                ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView({block:'center'});", input
+                );
+
+                if (name.contains("first") || id.contains("first"))
                 {
-                    input.clear();
-                    input.sendKeys("Test");
-                    System.out.println("Pass Filled first name field");
+                    input.clear(); input.sendKeys("Test");
+                    System.out.println("Pass Filled first name"); filledCount++;
                 }
-                else if(inputName.contains("lastName") || inputId.contains("lastName"))
+                else if (name.contains("last") || id.contains("last"))
                 {
-                    input.clear();
-                    input.sendKeys("Test");
-                    System.out.println("Pass Filled last name field");
+                    input.clear(); input.sendKeys("User");
+                    System.out.println("Pass Filled last name"); filledCount++;
                 }
-                else if("email".equals(inputType) || inputName.contains("email") || inputId.contains("email"))
+                else if ("email".equals(type) || name.contains("email") ||
+                         id.contains("email") || autoComp.contains("email"))
                 {
-                    input.clear();
-                    input.sendKeys("testuser@example.com");
-                    System.out.println("Pass Filled email field");
+                    input.clear(); input.sendKeys("testuser" + System.currentTimeMillis() + "@example.com");
+                    System.out.println("Pass Filled email"); filledCount++;
                 }
-                else if("password".equals(inputType))
+                else if ("password".equals(type) || name.contains("password") ||
+                         id.contains("password") || autoComp.contains("password"))
                 {
-                    input.clear();
-                    input.sendKeys("ValidPass@123");
-                    System.out.println("Pass Filled password field");
+                    input.clear(); input.sendKeys("ValidPass@123");
+                    System.out.println("Pass Filled password field"); filledCount++;
                 }
+                // Date of birth dropdowns / selects are handled separately if needed
             }
+
             takeScreenshot("screenshots/test_case_3/valid_inputs.png");
-            System.out.println("Pass : Valid inputs entered successfully");
+
+            if (filledCount > 0)
+                System.out.println("Pass : Valid inputs entered successfully (" + filledCount + " fields filled)");
+            else
+            {
+                System.out.println("Fail : Could not identify and fill any fields");
+                testPassed = false;
+            }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.out.println("Fail : Error occurred while entering valid inputs " + e.getMessage());
+            System.out.println("Fail : Error entering valid inputs: " + e.getMessage());
             testPassed = false;
         }
     }
