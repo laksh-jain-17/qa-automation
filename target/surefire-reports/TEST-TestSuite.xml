@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="248.091" tests="21" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="204.947" tests="21" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="26"/>
     <property name="webdriver.chrome.driver" value="C:\Users\Admin\.cache\selenium\chromedriver\win64\147.0.7727.57\chromedriver.exe"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-26\bin"/>
-    <property name="sun.java.command" value="C:\Users\Admin\AppData\Local\Temp\surefire10951894226490003248\surefirebooter-20260423063733713_3.jar C:\Users\Admin\AppData\Local\Temp\surefire10951894226490003248 2026-04-23T06-37-33_251-jvmRun1 surefire-20260423063733713_1tmp surefire_0-20260423063733713_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Admin\AppData\Local\Temp\surefire17816977351207050758\surefirebooter-20260423072253086_3.jar C:\Users\Admin\AppData\Local\Temp\surefire17816977351207050758 2026-04-23T07-22-52_800-jvmRun1 surefire-20260423072253086_1tmp surefire_0-20260423072253086_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Admin\Desktop\kaushalam assessment\qa-automation\target\test-classes;C:\Users\Admin\Desktop\kaushalam assessment\qa-automation\target\classes;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-java\4.43.0\selenium-java-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-api\4.43.0\selenium-api-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.43.0\selenium-chrome-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.43.0\selenium-chromium-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.43.0\selenium-manager-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v145\4.43.0\selenium-devtools-v145-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v146\4.43.0\selenium-devtools-v146-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.43.0\selenium-edge-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.43.0\selenium-firefox-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-http\4.43.0\selenium-http-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.43.0\selenium-ie-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.43.0\selenium-remote-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\com\google\guava\guava\33.5.0-jre\guava-33.5.0-jre.jar;C:\Users\Admin\.m2\repository\com\google\guava\failureaccess\1.0.3\failureaccess-1.0.3.jar;C:\Users\Admin\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Admin\.m2\repository\com\google\errorprone\error_prone_annotations\2.41.0\error_prone_annotations-2.41.0.jar;C:\Users\Admin\.m2\repository\com\google\j2objc\j2objc-annotations\3.1\j2objc-annotations-3.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api\1.60.1\opentelemetry-api-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-context\1.60.1\opentelemetry-context-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-common\1.60.1\opentelemetry-common-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.60.1\opentelemetry-exporter-logging-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.60.1\opentelemetry-sdk-common-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.60.1\opentelemetry-sdk-extension-autoconfigure-spi-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.60.1\opentelemetry-sdk-extension-autoconfigure-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.60.1\opentelemetry-sdk-trace-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.60.1\opentelemetry-sdk-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.60.1\opentelemetry-sdk-metrics-1.60.1.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.60.1\opentelemetry-sdk-logs-1.60.1.jar;C:\Users\Admin\.m2\repository\net\bytebuddy\byte-buddy\1.18.8-jdk5\byte-buddy-1.18.8-jdk5.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-os\4.43.0\selenium-os-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.43.0\selenium-safari-driver-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-support\4.43.0\selenium-support-4.43.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v147\4.43.0\selenium-devtools-v147-4.43.0.jar;C:\Users\Admin\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Admin\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-json\4.43.0\selenium-json-4.43.0.jar;C:\Users\Admin\.m2\repository\io\github\bonigarcia\webdrivermanager\5.7.0\webdrivermanager-5.7.0.jar;C:\Users\Admin\.m2\repository\org\slf4j\slf4j-api\2.0.12\slf4j-api-2.0.12.jar;C:\Users\Admin\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java\3.3.5\docker-java-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-core\3.3.5\docker-java-core-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-api\3.3.5\docker-java-api-3.3.5.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.5\docker-java-transport-httpclient5-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport\3.3.5\docker-java-transport-3.3.5.jar;C:\Users\Admin\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\Admin\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-compress\1.26.0\commons-compress-1.26.0.jar;C:\Users\Admin\.m2\repository\commons-io\commons-io\2.15.1\commons-io-2.15.1.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\Admin\.m2\repository\org\testng\testng\7.9.0\testng-7.9.0.jar;C:\Users\Admin\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\Admin\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Admin\AppData\Local\Temp\surefire10951894226490003248\surefirebooter-20260423063733713_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Admin\AppData\Local\Temp\surefire17816977351207050758\surefirebooter-20260423072253086_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="26+35-2893"/>
@@ -60,7 +60,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="70.0"/>
   </properties>
-  <testcase name="openAmazonHomepage" classname="com.example.qa.testcases.TestCase1SearchVerification" time="20.475">
+  <testcase name="openAmazonHomepage" classname="com.example.qa.testcases.TestCase1SearchVerification" time="15.931">
     <system-out><![CDATA[Current URL: https://www.amazon.in/
 Page title : Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in
 Pass : Amazon homepage loaded. Title: Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in
@@ -71,90 +71,90 @@ SLF4J(W): Defaulting to no-operation (NOP) logger implementation
 SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="searchForLaptop" classname="com.example.qa.testcases.TestCase1SearchVerification" time="14.536">
+  <testcase name="searchForLaptop" classname="com.example.qa.testcases.TestCase1SearchVerification" time="12.69">
     <system-out><![CDATA[Pass Search for laptop begins
 ]]></system-out>
   </testcase>
-  <testcase name="verifySearchResults" classname="com.example.qa.testcases.TestCase1SearchVerification" time="2.858">
+  <testcase name="verifySearchResults" classname="com.example.qa.testcases.TestCase1SearchVerification" time="1.223">
     <system-out><![CDATA[Pass Search results appeared. Count: 22
 Screenshot saved: screenshots/test_case_1/search_results.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyResultHasTitlePriceRating" classname="com.example.qa.testcases.TestCase1SearchVerification" time="0.38">
+  <testcase name="verifyResultHasTitlePriceRating" classname="com.example.qa.testcases.TestCase1SearchVerification" time="0.11">
     <system-out><![CDATA[Pass product titles found count: 30
-Pass product prices found count: 98
-Pass product ratings found count: 59
+Pass product prices found count: 99
+Pass product ratings found count: 61
 ]]></system-out>
   </testcase>
-  <testcase name="verifyFirstProduct" classname="com.example.qa.testcases.TestCase1SearchVerification" time="42.912">
+  <testcase name="verifyFirstProduct" classname="com.example.qa.testcases.TestCase1SearchVerification" time="28.858">
     <system-out><![CDATA[JS extracted 16 product URLs from result cards.
-Navigating to product 1: https://www.amazon.in/Acer-Premium-Windows-AL15-41-Display/dp/B0CWTYGPH8/ref=sr_1_3?crid=2C8C92SBNW72&dib=eyJ2IjoiMSJ9.KquEe0YzGlXG-P83ObD5_SUyKdabP0VCbtBsDzVFQgroQnvO3kU0a3dQ7QUR_qGlMO7TLFKiXLY4aW2EjI99ynnSOlCSFhEhcR0jtkbIWCr188wbsMk1FzBrUvdKcfNWzW4MUekZDkqmoOBXXGyOtd4Aefg6pVMZ_C2DXPle_vxDRIAqKxJU6Qd03kB8BTF9SG1_-RdVVb9g25h91D-cSm9E1ZnYTvHCJSmYzKIt__0.APXHpqKsa_weq_7KhfzDVRFEp2QILtowuSyx47nMm6w&dib_tag=se&keywords=Laptop&qid=1776906486&sprefix=laptop%2Caps%2C467&sr=8-3
-Pass product 1 title verified: acer Aspire Lite, AMD Ryzen 3 5300U Processor, 16 GB RAM, 512GB SSD, Full HD, 15.6"/39.62cm, Windows 11 Home, Steel Gray, 1.59KG, AL15-41, Metal Body, Premium Thin and Light Laptop
+Navigating to product 1: https://www.amazon.in/Thomson-Processor-Window-Notebook-Numeric/dp/B0DYVQYGP9/ref=sr_1_3?crid=2J9459DKFMLFE&dib=eyJ2IjoiMSJ9.mqeCrKfXmiV3fCga1vGKA8JXVtQfE0hex-UP-3xCKPbbb-wiZHVXWPdUCBDmr91ivqf2tTpxJW0RFzjhruwl52ceBKDj64VUaH4z4qQ4eWDl0Q0M7b2QlU0lLEFyLTSBG-Y_NQI2lTEUtho83tfd75MMl-omNynP2HlhjeTEQNijoMwb51dFMLX7LLL6Z7BAQMW7G65mWFhyIahU-TltdjLqmj5MKpWGeJRHuPYAKm8.uDxG4aifi54XtZOBHaowXGZoO1pLAcX7VEIemvB9LiE&dib_tag=se&keywords=Laptop&qid=1776909195&sprefix=laptop%2Caps%2C664&sr=8-3
+Pass product 1 title verified: Thomson NEO 14.1 Inch IN-P14C Intel Celeron Dual Core N4020 Processor & Window 11 Home Notebook (4 GB RAM DDR4/ 128 GB SSD/Numeric Touch Pad/Thin & Light Weight/Silver)
 Pass product 1 price: 
 Pass product 1 availability: In stock
 Screenshot saved: screenshots/test_case_1/product1_details.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifySecondProduct" classname="com.example.qa.testcases.TestCase1SearchVerification" time="36.071">
+  <testcase name="verifySecondProduct" classname="com.example.qa.testcases.TestCase1SearchVerification" time="20.423">
     <system-out><![CDATA[JS extracted 16 product URLs from result cards.
-Navigating to product 2: https://www.amazon.in/HP-i3-1315U-Anti-Glare-Micro-Edge-fd0569TU/dp/B0F4R5W1NC/ref=sr_1_4?crid=2C8C92SBNW72&dib=eyJ2IjoiMSJ9.tX-GDyIVdQZRwMeD7qa7_KJ897YOkqNhADO4W0IFTX5ic9fQdrzrwjsYRczqUoC-MO7TLFKiXLY4aW2EjI99ynnSOlCSFhEhcR0jtkbIWCr188wbsMk1FzBrUvdKcfNWzW4MUekZDkqmoOBXXGyOtaBO0mRd7UEv61IikByZMSvK4a--G8s6xfCB7_8E9-JvSG1_-RdVVb9g25h91D-cSm9E1ZnYTvHCJSmYzKIt__0.LH1f1wteDtVIWQPLxqQ6rj305AMiE2LoPVK9UKAXCIw&dib_tag=se&keywords=Laptop&qid=1776906536&sprefix=laptop%2Caps%2C467&sr=8-4
-Pass product 2 title verified: HP 15, 13th Gen Intel Core i3-1315U Laptop (8GB DDR4,512GB SSD) Anti-Glare, Micro-Edge,15.6''/39.6cm, FHD, Win11,M365 Basic(1yr),Office Home24, Silver,1.59kg, FHD Camera w/Privacy Shutter, fd0569TU
+Navigating to product 2: https://www.amazon.in/Neopticon-Student-Celeron-Expandable-Graphics/dp/B0G2MT8YVV/ref=sr_1_4?crid=2J9459DKFMLFE&dib=eyJ2IjoiMSJ9.mqeCrKfXmiV3fCga1vGKA8JXVtQfE0hex-UP-3xCKPbbb-wiZHVXWPdUCBDmr91ivqf2tTpxJW0RFzjhruwl52ceBKDj64VUaH4z4qQ4eWDl0Q0M7b2QlU0lLEFyLTSBG-Y_NQI2lTEUtho83tfd75MMl-omNynP2HlhjeTEQNijoMwb51dFMLX7LLL6Z7BAQMW7G65mWFhyIahU-TltdjLqmj5MKpWGeJRHuPYAKm8.uDxG4aifi54XtZOBHaowXGZoO1pLAcX7VEIemvB9LiE&dib_tag=se&keywords=Laptop&qid=1776909230&sprefix=laptop%2Caps%2C664&sr=8-4
+Pass product 2 title verified: EBook 11.6" HD Laptop | Best Student & Office Work Laptop | Celeron N4020 | 4GB DDR4 | 128GB eMMC + M.2 SSD Expandable Slot | Win 11 Home |31Wh Battery | UHD Graphics 600 | Black
 Pass product 2 price: 
 Pass product 2 availability: In stock
 Screenshot saved: screenshots/test_case_1/product2_details.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyThirdProduct" classname="com.example.qa.testcases.TestCase1SearchVerification" time="31.417">
+  <testcase name="verifyThirdProduct" classname="com.example.qa.testcases.TestCase1SearchVerification" time="23.734">
     <system-out><![CDATA[JS extracted 16 product URLs from result cards.
-Navigating to product 3: https://www.amazon.in/Samsung-Galaxy-Dynamic-Battery-Speakers/dp/B0GT17J49N/ref=sr_1_5?crid=2C8C92SBNW72&dib=eyJ2IjoiMSJ9.tX-GDyIVdQZRwMeD7qa7_KJ897YOkqNhADO4W0IFTX5ic9fQdrzrwjsYRczqUoC-MO7TLFKiXLY4aW2EjI99ynnSOlCSFhEhcR0jtkbIWCr188wbsMk1FzBrUvdKcfNWzW4MUekZDkqmoOBXXGyOtaBO0mRd7UEv61IikByZMSvK4a--G8s6xfCB7_8E9-JvSG1_-RdVVb9g25h91D-cSm9E1ZnYTvHCJSmYzKIt__0.LH1f1wteDtVIWQPLxqQ6rj305AMiE2LoPVK9UKAXCIw&dib_tag=se&keywords=Laptop&qid=1776906571&sprefix=laptop%2Caps%2C467&sr=8-5
+Navigating to product 3: https://www.amazon.in/Samsung-Galaxy-Dynamic-Battery-Speakers/dp/B0GT17J49N/ref=sr_1_5?crid=2J9459DKFMLFE&dib=eyJ2IjoiMSJ9.mqeCrKfXmiV3fCga1vGKA8JXVtQfE0hex-UP-3xCKPbbb-wiZHVXWPdUCBDmr91ivqf2tTpxJW0RFzjhruwl52ceBKDj64VUaH4z4qQ4eWDl0Q0M7b2QlU0lLEFyLTSBG-Y_NQI2lTEUtho83tfd75MMl-omNynP2HlhjeTEQNijoMwb51dFMLX7LLL6Z7BAQMW7G65mWFhyIahU-TltdjLqmj5MKpWGeJRHuPYAKm8.uDxG4aifi54XtZOBHaowXGZoO1pLAcX7VEIemvB9LiE&dib_tag=se&keywords=Laptop&qid=1776909249&sprefix=laptop%2Caps%2C664&sr=8-5
 Pass product 3 title verified: Samsung Galaxy Book6 Ultra (Gray, 32GB RAM, 1TB SSD) | Intel Core Ultra X7 (Series 3) | 16" WQXGA+ Dynamic AMOLED 2X with Touch Screen | 30Hrs Battery Life | 120 Hz | Six Speakers | AI PC
 Pass product 3 price: 
 Pass product 3 availability: In stock
 Screenshot saved: screenshots/test_case_1/product3_details.png
 ]]></system-out>
   </testcase>
-  <testcase name="searchForHeadphones" classname="com.example.qa.testcases.TestCase2CartValidation" time="14.677">
+  <testcase name="searchForHeadphones" classname="com.example.qa.testcases.TestCase2CartValidation" time="14.571">
     <system-out><![CDATA[Test Case 1: Passed
 Pass Search for headphones begins
 ]]></system-out>
   </testcase>
-  <testcase name="openFirstProduct" classname="com.example.qa.testcases.TestCase2CartValidation" time="8.991">
+  <testcase name="openFirstProduct" classname="com.example.qa.testcases.TestCase2CartValidation" time="14.114">
     <system-out><![CDATA[Screenshot saved: screenshots/test_case_2/search_results.png
 JS extracted 16 product URLs.
-Navigating to first product: https://www.amazon.in/boAt-Bluetooth-Headphones-Wireless-Headphone/dp/B0FC2Y8XYF/ref=sr_1_3?crid=3J92PDS0G2GHL&dib=eyJ2IjoiMSJ9.ORh7O0CdjJy9fePQCRartzyBMTzfa-y7NCXSL3ZzjkbzB9ISMNanijqO9f6T6Zg3JZd5UhTSCVRzUWQlvlL9vb_V5qpOrB6IHrAH-pwTSddTZxyPXx6b1IdIKSWHcN0MAEGqHrITSnJtWBmg0mV52t2CrrbT4UwLDJs7PCN-zPIbKuGupqZNQljtGtKuFZltblqCCqrAno76-RFEDDcqJsXTMipq3XJdrxu2RHxVQs0.asDD6BCThm_1JS1wqgYVBvSvMf2pCTPU8UwqfKfct88&dib_tag=se&keywords=Headphones&qid=1776906638&sprefix=headphones%2Caps%2C525&sr=8-3
+Navigating to first product: https://www.amazon.in/boAt-Bluetooth-Headphones-Wireless-Headphone/dp/B0FC2Y8XYF/ref=sr_1_3?dib=eyJ2IjoiMSJ9.ORh7O0CdjJy9fePQCRartzyBMTzfa-y7NCXSL3ZzjkbzB9ISMNanijqO9f6T6Zg3JZd5UhTSCVRzUWQlvlL9vb_V5qpOrB6IHrAH-pwTSddTZxyPXx6b1IdIKSWHcN0MfbPARdvyXzguC8T7TAPXEZcm7GRBqhh3z6tCDcb1L5PkB4TLEoOsk4WKI9kfpG2-q2NiU2rZlS8_9pFvYYBTUzJLeJrMNsZp_L971JM81oU.8gVZmam-BH1Ma2riN8WYqXs8PKkj75fuglZvLTAZ384&dib_tag=se&keywords=Headphones&qid=1776909300&sr=8-3
 Pass : First product opened
 ]]></system-out>
   </testcase>
-  <testcase name="verifyProductNameAndPrice" classname="com.example.qa.testcases.TestCase2CartValidation" time="0.558">
+  <testcase name="verifyProductNameAndPrice" classname="com.example.qa.testcases.TestCase2CartValidation" time="0.785">
     <system-out><![CDATA[Pass product name verified: Boat Rockerz 411, 40Ms Low Latency, 40Hrs Battery, 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Active Black)
 Pass product price verified: 
 Screenshot saved: screenshots/test_case_2/product_details.png
 ]]></system-out>
   </testcase>
-  <testcase name="addToCart" classname="com.example.qa.testcases.TestCase2CartValidation" time="5.528">
+  <testcase name="addToCart" classname="com.example.qa.testcases.TestCase2CartValidation" time="5.668">
     <system-out><![CDATA[Found add-to-cart via id: add-to-cart-button
 Pass clicked add to cart
 Screenshot saved: screenshots/test_case_2/added_to_cart.png
 ]]></system-out>
   </testcase>
-  <testcase name="goToCartAndVerify" classname="com.example.qa.testcases.TestCase2CartValidation" time="4.786">
+  <testcase name="goToCartAndVerify" classname="com.example.qa.testcases.TestCase2CartValidation" time="4.629">
     <system-out><![CDATA[Screenshot saved: screenshots/test_case_2/cart_page.png
 Pass cart item found (signed-in cart item)
 Pass item in cart: Boat Rockerz 411, 40Ms Low Latency, 40Hrs Battery, 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headpho…
 ]]></system-out>
   </testcase>
-  <testcase name="verifyCartQuantityAndTotal" classname="com.example.qa.testcases.TestCase2CartValidation" time="0.118">
+  <testcase name="verifyCartQuantityAndTotal" classname="com.example.qa.testcases.TestCase2CartValidation" time="0.112">
     <system-out><![CDATA[Pass Cart quantity: 1
-Pass Cart subtotal: ₹1,105.00
+Pass Cart subtotal: ₹1,055.00
 ]]></system-out>
   </testcase>
-  <testcase name="removeItemAndVerifyEmptyCart" classname="com.example.qa.testcases.TestCase2CartValidation" time="2.801">
+  <testcase name="removeItemAndVerifyEmptyCart" classname="com.example.qa.testcases.TestCase2CartValidation" time="2.792">
     <system-out><![CDATA[Pass clicked delete button
 Screenshot saved: screenshots/test_case_2/empty_cart.png
 Pass Cart is empty: Shopping Cart
 ]]></system-out>
   </testcase>
-  <testcase name="openAppleAccountPage" classname="com.example.qa.testcases.TestCase3FormValidation" time="8.292">
+  <testcase name="openAppleAccountPage" classname="com.example.qa.testcases.TestCase3FormValidation" time="12.169">
     <system-out><![CDATA[Test Case 2: Passed
 Page title: Create Your Apple Account
 Current URL: https://account.apple.com/account
@@ -163,37 +163,37 @@ Screenshot saved: screenshots/test_case_3/page_loaded.png
 Pass : Apple account page loaded successfully
 ]]></system-out>
   </testcase>
-  <testcase name="verifyFormFieldsVisible" classname="com.example.qa.testcases.TestCase3FormValidation" time="0.624">
+  <testcase name="verifyFormFieldsVisible" classname="com.example.qa.testcases.TestCase3FormValidation" time="0.422">
     <system-out><![CDATA[Switched into iframe: iframe[src*='appleid']
 Pass : Form fields visible. Count: 7
 Screenshot saved: screenshots/test_case_3/form_fields_visible.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyRequiredFieldsOnBlankSubmit" classname="com.example.qa.testcases.TestCase3FormValidation" time="2.686">
+  <testcase name="verifyRequiredFieldsOnBlankSubmit" classname="com.example.qa.testcases.TestCase3FormValidation" time="4.461">
     <system-out><![CDATA[Switched into iframe: iframe[src*='appleid']
 Pass : Required fields validation triggered. Errors found: 21
 Screenshot saved: screenshots/test_case_3/required_fields_error.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyInvalidEmailFormat" classname="com.example.qa.testcases.TestCase3FormValidation" time="3.343">
+  <testcase name="verifyInvalidEmailFormat" classname="com.example.qa.testcases.TestCase3FormValidation" time="5.325">
     <system-out><![CDATA[Switched into iframe: iframe[src*='appleid']
 Pass : Invalid email error shown
 Screenshot saved: screenshots/test_case_3/invalid_email.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyWeakPasswordError" classname="com.example.qa.testcases.TestCase3FormValidation" time="2.303">
+  <testcase name="verifyWeakPasswordError" classname="com.example.qa.testcases.TestCase3FormValidation" time="8.426">
     <system-out><![CDATA[Switched into iframe: iframe[src*='appleid']
 Pass : Weak password error shown
 Screenshot saved: screenshots/test_case_3/weak_password_error.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyPasswordMismatchError" classname="com.example.qa.testcases.TestCase3FormValidation" time="2.681">
+  <testcase name="verifyPasswordMismatchError" classname="com.example.qa.testcases.TestCase3FormValidation" time="2.434">
     <system-out><![CDATA[Switched into iframe: iframe[src*='appleid']
 Pass : Password mismatch error shown
 Screenshot saved: screenshots/test_case_3/password_mismatch_error.png
 ]]></system-out>
   </testcase>
-  <testcase name="verifyValidInputsAccepted" classname="com.example.qa.testcases.TestCase3FormValidation" time="7.511">
+  <testcase name="verifyValidInputsAccepted" classname="com.example.qa.testcases.TestCase3FormValidation" time="9.094">
     <system-out><![CDATA[Switched into iframe: iframe[src*='appleid']
 Visible input fields: 7
 Pass Filled first name

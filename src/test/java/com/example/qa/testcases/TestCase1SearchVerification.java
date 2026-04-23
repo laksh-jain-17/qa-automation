@@ -1,5 +1,4 @@
 package com.example.qa.testcases;
-
 import com.example.qa.components.Components_Amazon;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,24 +7,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestCase1SearchVerification extends Components_Amazon
 {
     boolean testPassed = true;
-
     @BeforeClass
     public void setup() { setUp(); }
-
     @AfterClass
     public void teardown()
     {
         writeResult("Test Case 1", testPassed ? "Passed" : "Failed");
         tearDown();
     }
-
     private boolean waitForHomepage()
     {
         try
@@ -51,11 +46,6 @@ public class TestCase1SearchVerification extends Components_Amazon
             return false;
         }
     }
-
-    // -------------------------------------------------------------------------
-    // Uses JavaScript to pull the first /dp/ link from every result card.
-    // This is selector-class-agnostic — works regardless of Amazon's markup.
-    // -------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
     private List<String> getProductUrls()
     {
@@ -79,7 +69,6 @@ public class TestCase1SearchVerification extends Components_Amazon
         System.out.println("JS extracted " + urls.size() + " product URLs from result cards.");
         return urls;
     }
-
     @Test(priority = 1)
     public void openAmazonHomepage()
     {
@@ -94,7 +83,6 @@ public class TestCase1SearchVerification extends Components_Amazon
         }
         takeScreenshot("screenshots/test_case_1/homepage.png");
     }
-
     @Test(priority = 2)
     public void searchForLaptop()
     {
@@ -108,13 +96,12 @@ public class TestCase1SearchVerification extends Components_Amazon
                 By.id("nav-search-submit-button"))).click();
             System.out.println("Pass Search for laptop begins");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not perform search: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 3)
     public void verifySearchResults()
     {
@@ -129,13 +116,12 @@ public class TestCase1SearchVerification extends Components_Amazon
             else { System.out.println("Fail no search results found"); testPassed = false; }
             takeScreenshot("screenshots/test_case_1/search_results.png");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail search results did not load: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 4)
     public void verifyResultHasTitlePriceRating()
     {
@@ -161,26 +147,24 @@ public class TestCase1SearchVerification extends Components_Amazon
             else
                 System.out.println("Warn no product ratings found (some results may not have ratings)");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not verify result details: " + e.getMessage());
             testPassed = false;
         }
     }
 
-    private void visitAndVerifyProduct(int index, String label, String screenshotPath,
-                                       List<String> urls, String searchResultsUrl)
+    private void visitAndVerifyProduct(int index, String label, String screenshotPath,List<String> urls, String searchResultsUrl)
     {
         try
         {
-            if (urls.size() <= index)
+            if(urls.size() <= index)
             {
                 System.out.println("Fail not enough product URLs for " + label +
                                    ". Found: " + urls.size());
                 testPassed = false;
                 return;
             }
-
             String url = urls.get(index);
             System.out.println("Navigating to " + label + ": " + url);
             driver.get(url);
@@ -190,36 +174,33 @@ public class TestCase1SearchVerification extends Components_Amazon
                 ExpectedConditions.visibilityOfElementLocated(By.id("productTitle")));
 
             String titleText = productTitle.getText().trim();
-            if (!titleText.isEmpty())
+            if(!titleText.isEmpty())
                 System.out.println("Pass " + label + " title verified: " + titleText);
             else
             {
                 System.out.println("Fail " + label + " title is empty");
                 testPassed = false;
             }
-
             List<WebElement> priceElements = driver.findElements(
                 By.cssSelector(".a-price .a-offscreen"));
-            if (priceElements.size() > 0)
+            if(priceElements.size() > 0)
                 System.out.println("Pass " + label + " price: " + priceElements.get(0).getText());
             else
                 System.out.println("Warn " + label + " price not found");
 
             List<WebElement> availability = driver.findElements(By.id("availability"));
-            if (availability.size() > 0)
+            if(availability.size() > 0)
                 System.out.println("Pass " + label + " availability: " +
                                    availability.get(0).getText().trim());
             else
                 System.out.println("Warn " + label + " availability not found");
-
             takeScreenshot(screenshotPath);
-
             driver.get(searchResultsUrl);
             wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("[data-component-type='s-search-result']")));
             Thread.sleep(1000);
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not verify " + label + " details: " + e.getMessage());
             testPassed = false;
@@ -229,34 +210,28 @@ public class TestCase1SearchVerification extends Components_Amazon
                 wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.cssSelector("[data-component-type='s-search-result']")));
             }
-            catch (Exception ignored) {}
+            catch(Exception ignored) {}
         }
     }
-
     @Test(priority = 5)
     public void verifyFirstProduct()
     {
         String searchUrl = driver.getCurrentUrl();
         List<String> urls = getProductUrls();
-        visitAndVerifyProduct(0, "product 1", "screenshots/test_case_1/product1_details.png",
-                              urls, searchUrl);
+        visitAndVerifyProduct(0, "product 1", "screenshots/test_case_1/product1_details.png",urls, searchUrl);
     }
-
     @Test(priority = 6)
     public void verifySecondProduct()
     {
         String searchUrl = driver.getCurrentUrl();
         List<String> urls = getProductUrls();
-        visitAndVerifyProduct(1, "product 2", "screenshots/test_case_1/product2_details.png",
-                              urls, searchUrl);
+        visitAndVerifyProduct(1, "product 2", "screenshots/test_case_1/product2_details.png",urls, searchUrl);
     }
-
     @Test(priority = 7)
     public void verifyThirdProduct()
     {
         String searchUrl = driver.getCurrentUrl();
         List<String> urls = getProductUrls();
-        visitAndVerifyProduct(2, "product 3", "screenshots/test_case_1/product3_details.png",
-                              urls, searchUrl);
+        visitAndVerifyProduct(2, "product 3", "screenshots/test_case_1/product3_details.png",urls, searchUrl);
     }
 }

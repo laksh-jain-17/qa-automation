@@ -1,5 +1,4 @@
 package com.example.qa.testcases;
-
 import com.example.qa.components.Components_Amazon;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,21 +15,14 @@ public class TestCase2CartValidation extends Components_Amazon
     String productName  = "";
     String productPrice = "";
     boolean testPassed  = true;
-
     @BeforeClass
     public void setup() { setUp(); }
-
     @AfterClass
     public void teardown()
     {
         writeResult("Test Case 2", testPassed ? "Passed" : "Failed");
         tearDown();
     }
-
-    // -------------------------------------------------------------------------
-    // Same JS extraction used in TC1 — grabs first /dp/ href from every card.
-    // Class-agnostic, works regardless of Amazon's current anchor markup.
-    // -------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
     private List<String> getProductUrls()
     {
@@ -55,21 +46,22 @@ public class TestCase2CartValidation extends Components_Amazon
         System.out.println("JS extracted " + urls.size() + " product URLs.");
         return urls;
     }
-
     @Test(priority = 1)
     public void searchForHeadphones()
     {
         driver.get("https://www.amazon.in");
-        try { Thread.sleep(3000); } catch (InterruptedException ignored) {}
-
+        try 
+        { 
+            Thread.sleep(3000); 
+        } 
+        catch(InterruptedException ignored) {}
         String url = driver.getCurrentUrl();
-        if (url.contains("errors") || url.contains("sorry"))
+        if(url.contains("errors") || url.contains("sorry"))
         {
             System.out.println("Fail : Amazon bot-detection page. URL: " + url);
             testPassed = false;
             return;
         }
-
         try
         {
             WebElement searchBox = wait.until(
@@ -80,13 +72,12 @@ public class TestCase2CartValidation extends Components_Amazon
                 By.id("nav-search-submit-button"))).click();
             System.out.println("Pass Search for headphones begins");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail : Error occurred while searching: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 2)
     public void openFirstProduct()
     {
@@ -95,31 +86,26 @@ public class TestCase2CartValidation extends Components_Amazon
             wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("[data-component-type='s-search-result']")));
             takeScreenshot("screenshots/test_case_2/search_results.png");
-
             List<String> urls = getProductUrls();
-
-            if (urls.isEmpty())
+            if(urls.isEmpty())
             {
                 System.out.println("Fail : No product URLs found via JS extraction");
                 testPassed = false;
                 return;
             }
-
             String productUrl = urls.get(0);
             System.out.println("Navigating to first product: " + productUrl);
             driver.get(productUrl);
-
             wait.until(ExpectedConditions.urlContains("/dp/"));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productTitle")));
             System.out.println("Pass : First product opened");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail : Error opening first product: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 3)
     public void verifyProductNameAndPrice()
     {
@@ -129,14 +115,13 @@ public class TestCase2CartValidation extends Components_Amazon
                 ExpectedConditions.visibilityOfElementLocated(By.id("productTitle")));
             productName = titleElement.getText().trim();
 
-            if (!productName.isEmpty())
+            if(!productName.isEmpty())
                 System.out.println("Pass product name verified: " + productName);
             else
             {
                 System.out.println("Fail product name is empty");
                 testPassed = false;
             }
-
             List<WebElement> priceElements = driver.findElements(
                 By.cssSelector(".a-price .a-offscreen"));
             if (priceElements.size() > 0)
@@ -149,21 +134,18 @@ public class TestCase2CartValidation extends Components_Amazon
 
             takeScreenshot("screenshots/test_case_2/product_details.png");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not verify product details: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 4)
     public void addToCart()
     {
         try
         {
             WebElement addToCartButton = null;
-
-            // Try IDs first (most reliable on Amazon product pages)
             String[] idSelectors = { "add-to-cart-button", "buy-now-button" };
             for (String id : idSelectors)
             {
@@ -176,8 +158,6 @@ public class TestCase2CartValidation extends Components_Amazon
                 }
                 catch (Exception ignored) {}
             }
-
-            // CSS fallback
             if (addToCartButton == null)
             {
                 try
@@ -190,19 +170,15 @@ public class TestCase2CartValidation extends Components_Amazon
                 }
                 catch (Exception ignored) {}
             }
-
-            if (addToCartButton == null)
+            if(addToCartButton == null)
             {
                 System.out.println("Fail could not find add-to-cart button");
                 testPassed = false;
                 return;
             }
-
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
             System.out.println("Pass clicked add to cart");
             Thread.sleep(2500);
-
-            // Dismiss protection-plan / warranty modal if shown
             try
             {
                 WebElement noThanks = driver.findElement(By.cssSelector(
@@ -212,16 +188,14 @@ public class TestCase2CartValidation extends Components_Amazon
                 Thread.sleep(1000);
             }
             catch (Exception ignored) {}
-
             takeScreenshot("screenshots/test_case_2/added_to_cart.png");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not add to cart: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 5)
     public void goToCartAndVerify()
     {
@@ -230,8 +204,6 @@ public class TestCase2CartValidation extends Components_Amazon
             driver.get("https://www.amazon.in/gp/cart/view.html");
             Thread.sleep(2500);
             takeScreenshot("screenshots/test_case_2/cart_page.png");
-
-            // Try multiple cart item selectors — structure differs guest vs signed-in
             WebElement cartItem = null;
             String[][] cartSelectors = {
                 { ".sc-list-item-content",              "signed-in cart item"   },
@@ -242,7 +214,6 @@ public class TestCase2CartValidation extends Components_Amazon
                 { ".a-spacing-mini.sc-list-item",       "mini list item"        },
                 { "[class*='sc-list-item']",            "sc-list-item wildcard" }
             };
-
             for (String[] pair : cartSelectors)
             {
                 try
@@ -254,7 +225,6 @@ public class TestCase2CartValidation extends Components_Amazon
                 }
                 catch (Exception ignored) {}
             }
-
             if (cartItem == null)
             {
                 System.out.println("Fail could not find cart items. URL: " + driver.getCurrentUrl());
@@ -263,7 +233,6 @@ public class TestCase2CartValidation extends Components_Amazon
                 testPassed = false;
                 return;
             }
-
             List<WebElement> cartTitles = driver.findElements(By.cssSelector(
                 ".sc-product-title span, .a-truncate-cut, [class*='product-title']"));
             if (cartTitles.size() > 0)
@@ -271,7 +240,7 @@ public class TestCase2CartValidation extends Components_Amazon
             else
                 System.out.println("Warn product title not found in cart DOM but item exists");
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not verify cart: " + e.getMessage());
             testPassed = false;
@@ -287,7 +256,7 @@ public class TestCase2CartValidation extends Components_Amazon
                 ".sc-quantity-textfield, input[name='quantity'], " +
                 "select[name='quantity'], " +
                 ".a-dropdown-container[data-name='quantity'] .a-button-text"));
-            if (quantity.size() > 0)
+            if(quantity.size() > 0)
             {
                 String qtyVal = quantity.get(0).getAttribute("value");
                 if (qtyVal == null || qtyVal.isEmpty())
@@ -299,13 +268,12 @@ public class TestCase2CartValidation extends Components_Amazon
                 System.out.println("Fail cart quantity field not found");
                 testPassed = false;
             }
-
             List<WebElement> subtotal = driver.findElements(By.cssSelector(
                 "#sc-subtotal-amount-activecart span, " +
                 ".sc-subtotal-amount-activecart span, " +
                 "[id*='subtotal'] span.a-color-base, " +
                 ".a-color-price.sc-price"));
-            if (subtotal.size() > 0)
+            if(subtotal.size() > 0)
                 System.out.println("Pass Cart subtotal: " + subtotal.get(0).getText().trim());
             else
             {
@@ -313,20 +281,17 @@ public class TestCase2CartValidation extends Components_Amazon
                 testPassed = false;
             }
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println("Fail could not verify cart quantities: " + e.getMessage());
             testPassed = false;
         }
     }
-
     @Test(priority = 7)
     public void removeItemAndVerifyEmptyCart()
     {
         try
         {
-            // Use JS to find and click any delete/remove action in the cart
-            // Amazon's delete is a declarative action — class names vary by session type
             Boolean clicked = (Boolean) ((JavascriptExecutor) driver).executeScript(
                 "var selectors = [" +
                 "  '[data-action=\"delete\"] input'," +
@@ -343,23 +308,19 @@ public class TestCase2CartValidation extends Components_Amazon
                 "}" +
                 "return false;"
             );
-
             if (!Boolean.TRUE.equals(clicked))
             {
                 System.out.println("Fail could not find delete button with any known selector");
                 testPassed = false;
                 return;
             }
-
             System.out.println("Pass clicked delete button");
             Thread.sleep(2500);
             takeScreenshot("screenshots/test_case_2/empty_cart.png");
-
             List<WebElement> emptyMessage = driver.findElements(By.cssSelector(
                 ".sc-your-amazon-cart-is-empty, [class*='empty-cart'], " +
                 "h2[class*='empty'], #sc-active-cart h2"));
-
-            if (emptyMessage.size() > 0)
+            if(emptyMessage.size() > 0)
             {
                 System.out.println("Pass Cart is empty: " + emptyMessage.get(0).getText().trim());
             }
