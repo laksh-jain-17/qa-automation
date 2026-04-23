@@ -14,10 +14,16 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
+/* This is base class for Amazon test cases
+    It provides shared Webdriver setup, teardown, screenshot,
+    and result-writing utilities used by Testcase 1 and 2.
+    */
 public class Components_Amazon
 {
     protected WebDriver driver;
     protected WebDriverWait wait;
+
+    //Initializes ChromeDriver with options too avoid bot detection//
     public void setUp()
     {
         WebDriverManager.chromedriver().setup();
@@ -51,6 +57,8 @@ public class Components_Amazon
         catch (Exception ignored) {}
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
+
+    //Closes the web browser and ends the WebDriver session after tests complete//
     public void tearDown()
     {
         if (driver != null)
@@ -58,6 +66,8 @@ public class Components_Amazon
             driver.quit();
         }
     }
+
+    //Takes screenshots and saves it to specific file path//
     public void takeScreenshot(String screenshotPath)
     {
         try
@@ -74,6 +84,8 @@ public class Components_Amazon
             System.err.println("Error occurred while taking screenshot: " + screenshotPath + " -> " + e.getMessage());
         }
     }
+
+    //Appends test cases to testResults.txt file//
     public void writeResult(String testCase, String result)
     {
         try

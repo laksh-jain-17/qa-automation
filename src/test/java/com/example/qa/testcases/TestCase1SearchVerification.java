@@ -10,17 +10,29 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/* This is Test Case 1 Search and Product Details Verification
+    This verifies Amazon search functionality and validates 
+    product details
+*/
 public class TestCase1SearchVerification extends Components_Amazon
 {
     boolean testPassed = true;
+    //Initialize Selenium webdriver and browser tests//
     @BeforeClass
-    public void setup() { setUp(); }
+    public void setup() 
+    { 
+        setUp(); 
+    }
+
+    //Test results to file//
     @AfterClass
     public void teardown()
     {
         writeResult("Test Case 1", testPassed ? "Passed" : "Failed");
         tearDown();
     }
+
+    //Loading Amazon homepage and verify bot detection//
     private boolean waitForHomepage()
     {
         try
@@ -69,6 +81,7 @@ public class TestCase1SearchVerification extends Components_Amazon
         System.out.println("JS extracted " + urls.size() + " product URLs from result cards.");
         return urls;
     }
+    //Step 1 Opens Amazon homepage and loads correctly//
     @Test(priority = 1)
     public void openAmazonHomepage()
     {
@@ -83,6 +96,8 @@ public class TestCase1SearchVerification extends Components_Amazon
         }
         takeScreenshot("screenshots/test_case_1/homepage.png");
     }
+
+    //Step - 2 Enter "Laptop" in the search//
     @Test(priority = 2)
     public void searchForLaptop()
     {
@@ -102,6 +117,8 @@ public class TestCase1SearchVerification extends Components_Amazon
             testPassed = false;
         }
     }
+
+    //Step - 3 Verify search results//
     @Test(priority = 3)
     public void verifySearchResults()
     {
@@ -122,6 +139,8 @@ public class TestCase1SearchVerification extends Components_Amazon
             testPassed = false;
         }
     }
+
+    //Check search result card having title, price and rating//
     @Test(priority = 4)
     public void verifyResultHasTitlePriceRating()
     {
@@ -213,6 +232,7 @@ public class TestCase1SearchVerification extends Components_Amazon
             catch(Exception ignored) {}
         }
     }
+    //Step - 5 Click and verify details of first product//
     @Test(priority = 5)
     public void verifyFirstProduct()
     {
@@ -220,6 +240,8 @@ public class TestCase1SearchVerification extends Components_Amazon
         List<String> urls = getProductUrls();
         visitAndVerifyProduct(0, "product 1", "screenshots/test_case_1/product1_details.png",urls, searchUrl);
     }
+
+    //Step - 6 Click and verify details of second product//
     @Test(priority = 6)
     public void verifySecondProduct()
     {
@@ -227,6 +249,8 @@ public class TestCase1SearchVerification extends Components_Amazon
         List<String> urls = getProductUrls();
         visitAndVerifyProduct(1, "product 2", "screenshots/test_case_1/product2_details.png",urls, searchUrl);
     }
+
+    //Step - 7 Click and verify details of third product//
     @Test(priority = 7)
     public void verifyThirdProduct()
     {

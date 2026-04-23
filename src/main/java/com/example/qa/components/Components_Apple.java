@@ -14,10 +14,16 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
+/* This is base class for Apple test cases
+    It provides shared Webdriver setup, teardown, screenshot,
+    and result-writing utilities used by Testcase 3.
+    */
 public class Components_Apple
 {
     protected WebDriver driver;
     protected WebDriverWait wait;
+
+    //Initializes ChromeDriver with options to mimic a real browser//
     public void setUp()
     {
         WebDriverManager.chromedriver().setup();
@@ -52,6 +58,8 @@ public class Components_Apple
         catch(Exception ignored) {}
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
+
+    //Closes the browser and ends the WebDriver session after tests complete//
     public void tearDown()
     {
         if (driver != null)
@@ -59,6 +67,8 @@ public class Components_Apple
             driver.quit();
         }
     }
+
+    //Takes a screenshots and saves it to specific file path//
     public void takeScreenshot(String screenshotPath)
     {
         try
@@ -75,6 +85,8 @@ public class Components_Apple
             System.out.println("Failed to save screenshot: " + screenshotPath + " -> " + e.getMessage());
         }
     }
+
+    //Appends the test cases result to testResults.txt file//
     public void writeResult(String testCase, String result)
     {
         try

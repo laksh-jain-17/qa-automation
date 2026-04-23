@@ -10,6 +10,10 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/*Test case 2 Cart Functionality validation
+  It searches for headphones on Amazon, adds to cart, verify cart details
+  and removes item
+*/
 public class TestCase2CartValidation extends Components_Amazon
 {
     String productName  = "";
@@ -23,6 +27,8 @@ public class TestCase2CartValidation extends Components_Amazon
         writeResult("Test Case 2", testPassed ? "Passed" : "Failed");
         tearDown();
     }
+
+    //Use Javascript to extract product detail page URL//
     @SuppressWarnings("unchecked")
     private List<String> getProductUrls()
     {
@@ -46,6 +52,8 @@ public class TestCase2CartValidation extends Components_Amazon
         System.out.println("JS extracted " + urls.size() + " product URLs.");
         return urls;
     }
+
+    //Step - 1 Seach for headphones and checks for bot detection//
     @Test(priority = 1)
     public void searchForHeadphones()
     {
@@ -78,6 +86,8 @@ public class TestCase2CartValidation extends Components_Amazon
             testPassed = false;
         }
     }
+
+    //Step - 2 Wait for search results and open first product page//
     @Test(priority = 2)
     public void openFirstProduct()
     {
@@ -106,6 +116,8 @@ public class TestCase2CartValidation extends Components_Amazon
             testPassed = false;
         }
     }
+
+    //Step - 3 Verify the product name and price are visible on the product page//
     @Test(priority = 3)
     public void verifyProductNameAndPrice()
     {
@@ -140,6 +152,8 @@ public class TestCase2CartValidation extends Components_Amazon
             testPassed = false;
         }
     }
+
+    //Step - 4 Click to add to cart button//
     @Test(priority = 4)
     public void addToCart()
     {
@@ -196,6 +210,8 @@ public class TestCase2CartValidation extends Components_Amazon
             testPassed = false;
         }
     }
+
+    //Step - 5 Navigate to the cart page and verify the item is present//
     @Test(priority = 5)
     public void goToCartAndVerify()
     {
@@ -247,6 +263,7 @@ public class TestCase2CartValidation extends Components_Amazon
         }
     }
 
+    //Step - 6 Verify cart shows correct quantity and subtotal amount//
     @Test(priority = 6)
     public void verifyCartQuantityAndTotal()
     {
@@ -287,6 +304,8 @@ public class TestCase2CartValidation extends Components_Amazon
             testPassed = false;
         }
     }
+    
+    //Step - 7 Remove the item from cart using JavaScript click//
     @Test(priority = 7)
     public void removeItemAndVerifyEmptyCart()
     {

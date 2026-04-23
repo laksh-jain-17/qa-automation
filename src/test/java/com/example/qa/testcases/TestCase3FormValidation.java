@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.List;
 
+/*Test case 3 - Form Validation on Apple Account Page*/
+
 public class TestCase3FormValidation extends Components_Apple
 {
     boolean testPassed = true;
@@ -24,6 +26,8 @@ public class TestCase3FormValidation extends Components_Apple
         writeResult("Test Case 3", testPassed ? "Passed" : "Failed");
         tearDown();
     }
+
+    //This method helps in switching Webdriver focus into Apple account form iframe//
     private boolean switchToFormFrame()
     {
         try
@@ -82,6 +86,8 @@ public class TestCase3FormValidation extends Components_Apple
             return false;
         }
     }
+
+    //Step 1 - Navigate to Apple account page and verify it loads//
     @Test(priority = 1)
     public void openAppleAccountPage()
     {
@@ -112,6 +118,8 @@ public class TestCase3FormValidation extends Components_Apple
             testPassed = false;
         }
     }
+
+    //Step - 2 Verify that form fields are visible on the page//
     @Test(priority = 2)
     public void verifyFormFieldsVisible()
     {
@@ -147,6 +155,8 @@ public class TestCase3FormValidation extends Components_Apple
             testPassed = false;
         }
     }
+
+    //Step - 3 Submit the form without filling any fields//
     @Test(priority = 3)
     public void verifyRequiredFieldsOnBlankSubmit()
     {
@@ -190,6 +200,8 @@ public class TestCase3FormValidation extends Components_Apple
             testPassed = false;
         }
     }
+
+    //Step - 4 Enter an invalid email format and verify error message//
     @Test(priority = 4)
     public void verifyInvalidEmailFormat()
     {
@@ -237,6 +249,8 @@ public class TestCase3FormValidation extends Components_Apple
             testPassed = false;
         }
     }
+
+    //Step - 5 Enter a weak/ short password and verify the error message//
     @Test(priority = 5)
     public void verifyWeakPasswordError()
     {
@@ -284,6 +298,8 @@ public class TestCase3FormValidation extends Components_Apple
             testPassed = false;
         }
     }
+
+    //Step - 6 Enter mismatched passwords in password and confirm fields//
     @Test(priority = 6)
     public void verifyPasswordMismatchError()
     {
@@ -333,6 +349,7 @@ public class TestCase3FormValidation extends Components_Apple
         }
     }
 
+    //Step - 7 Fill all the visible form fields with valid data//
     @Test(priority = 7)
     public void verifyValidInputsAccepted()
     {
